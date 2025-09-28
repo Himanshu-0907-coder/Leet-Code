@@ -9,8 +9,7 @@ public:
             mid = lo + (hi - lo) / 2;
             if (arr[mid] == x) {
                 break;
-            }
-            else if (arr[mid] > x) hi = mid - 1;
+            } else if (arr[mid] > x) hi = mid - 1;
             else lo = mid + 1;
         }
 
@@ -19,9 +18,8 @@ public:
             ans.push_back(arr[mid]);
             left = mid - 1;
             right = mid + 1;
-            k--;
-        }
-        else {
+            k--; // one element already added
+        } else {
             left = hi;
             right = lo;
         }
@@ -30,26 +28,22 @@ public:
             if (left < 0) {
                 ans.push_back(arr[right]);
                 right++;
-            }
-            else if (right >= n) {
-                ans.push_back(arr[left]);
+            } else if (right >= n) {
+                ans.insert(ans.begin(), arr[left]);
                 left--;
-            }
-            else {
+            } else {
                 int ld = abs(x - arr[left]);
                 int rd = abs(x - arr[right]);
                 if (ld <= rd) {
-                    ans.push_back(arr[left]);
+                    ans.insert(ans.begin(), arr[left]);
                     left--;
-                }
-                else {
+                } else {
                     ans.push_back(arr[right]);
                     right++;
                 }
             }
         }
 
-        sort(ans.begin(), ans.end());
         return ans;
     }
 };
