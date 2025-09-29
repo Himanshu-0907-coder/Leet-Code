@@ -6,8 +6,8 @@ bool isperfectsquare(int n){
     else return false;
 }
     bool judgeSquareSum(int c) {
-        long long x = 0;
-        long long y = c;
+        int x = 0;
+        int y = c;
         
         while(x<=y){
             if(isperfectsquare(x) && isperfectsquare(y)) return true;
