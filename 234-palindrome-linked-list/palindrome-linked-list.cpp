@@ -10,25 +10,41 @@ public:
     bool isPalindrome(ListNode* head) {
         if(!head || !head->next) return true;
 
-        ListNode* temp = head;
-        ListNode* farzi = new ListNode(0);
-        ListNode* tc = farzi;
-        while(temp!=NULL){
-                tc->next = new ListNode(temp->val);
-                temp = temp->next;
-                tc = tc->next;
+        // ListNode* temp = head;
+        // ListNode* farzi = new ListNode(0);
+        // ListNode* tc = farzi;
+        // while(temp!=NULL){
+        //         tc->next = new ListNode(temp->val);
+        //         temp = temp->next;
+        //         tc = tc->next;
+        // }
+        // farzi = farzi->next;
+        // ListNode* newHead = reverse(farzi);
+        // temp = head;
+        // tc = newHead;
+        // while(temp!=NULL && tc!=NULL){
+        //     if(temp->val != tc->val){
+        //         return false;   // mismatch → immediately false
+        //     }
+        //     temp = temp->next;
+        //     tc = tc->next;
+        // }
+        // return true;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast->next != NULL && fast->next->next != NULL){
+            slow = slow->next;
+            fast = fast->next->next;
         }
-        farzi = farzi->next;
-        ListNode* newHead = reverse(farzi);
-        temp = head;
-        tc = newHead;
-        bool flag = false;
-        while(temp!=NULL && tc!=NULL){
-            if(temp->val != tc->val){
-                return false;   // mismatch → immediately false
+        ListNode* newHead = reverse(slow->next);
+        ListNode* a = head;
+        ListNode* b = newHead;
+        while(b){
+            if(a->val != b->val){
+                return false;
             }
-            temp = temp->next;
-            tc = tc->next;
+            a = a->next;
+            b = b->next;
         }
         return true;
 
