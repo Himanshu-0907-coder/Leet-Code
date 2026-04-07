@@ -2,35 +2,34 @@ class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
         int n = nums.size();
-        //finding pivot
-        int idx = -1;
 
+        //pivot idx
+        int idx = -1;
         for(int i=n-2;i>=0;i--){
             if(nums[i]<nums[i+1]){
                 idx = i;
                 break;
             }
         }
+        // if no element found
         if(idx == -1){
             reverse(nums.begin(),nums.end());
-            return ;
+            return;
         }
 
-        //shorting reverse after pivot
-        reverse(nums.begin()+idx+1,nums.end());
-
-        // finding greater
         int j = -1;
-        for(int i=idx+1;i<n;i++){
+        for(int i=n-1;i>idx;i--){
             if(nums[i]>nums[idx]){
-                j=i;
+                j = i;
                 break;
             }
         }
-
-        // swap idx and idx+1
         int temp = nums[idx];
         nums[idx] = nums[j];
         nums[j] = temp;
+
+        //reverse kardo idx+1 se baki number mil jaiga
+        reverse(nums.begin()+idx+1,nums.end());
+
     }
 };
