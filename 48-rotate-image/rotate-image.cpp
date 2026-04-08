@@ -2,16 +2,15 @@ class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
         int n = matrix.size();
-        // Swap
+
+        //Transpose of the matrix
         for(int i=0;i<n;i++){
             for(int j=i+1;j<n;j++){
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = temp;
+                swap(matrix[i][j],matrix[j][i]);
             }
         }
 
-        //Swap
+        //swaping the values
         for(int k=0;k<n;k++){
             int i=0;
             int j=n-1;
@@ -23,6 +22,7 @@ public:
                 j--;
             }
         }
-        return ;
+        
+
     }
 };
