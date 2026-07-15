@@ -1,7 +1,7 @@
 class MyQueue {
 public:
-stack<int> st;
-stack<int> helper;
+    stack<int> st;
+    stack<int>helper;
     MyQueue() {
         
     }
@@ -10,40 +10,47 @@ stack<int> helper;
         st.push(x);
     }
     
-    int pop() {
-        // remove at bottom
-        while(st.size()>0){
-            helper.push(st.top());
+    int pop() { 
+        //Getting first bottom elemnt 2nd stack
+        while(!st.empty()){
+            int ele = st.top();
             st.pop();
-        }    
-        int x = helper.top();//st ka bottom elemtnt pop kar diya
-        helper.pop();
-        while(helper.size()>0){
-            st.push(helper.top());
-            helper.pop();
+            helper.push(ele);
         }
-        //bottom element ko return kar diya
-        return x; 
+        
+        //poping ele
+        int popele = helper.top();
+        helper.pop();
+        //pushing elents back;
+        while(!helper.empty()){
+            int ele = helper.top();
+            helper.pop();
+            st.push(ele);
+        }
+        return popele;
     }
     
     int peek() {
-        while(st.size()>0){
-            helper.push(st.top());
+        //Getting first bottom elemnt 2nd stack
+        while(!st.empty()){
+            int ele = st.top();
             st.pop();
-        }    
-        int x = helper.top();//st ka bottom elemtnt pop kar diya
-        while(helper.size()>0){
-            st.push(helper.top());
-            helper.pop();
+            helper.push(ele);
         }
-        return x; 
+        
+        //getting ele
+        int topele = helper.top();
+        //pushing elents back;
+        while(!helper.empty()){
+            int ele = helper.top();
+            helper.pop();
+            st.push(ele);
+        }
+        return topele;
     }
     
     bool empty() {
-        if(st.size() == 0){
-            return true;
-        }
-        return false;
+        return st.size() == 0;
     }
 };
 
