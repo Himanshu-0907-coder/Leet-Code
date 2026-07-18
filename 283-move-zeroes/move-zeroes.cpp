@@ -1,10 +1,12 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        if(nums.size() == 0) nums;
-        int i = 0;
+        int n = nums.size();
+        
+        int i =0;
         int j = i+1;
-        while(j<nums.size()){
+
+        while(j<n){
             if(nums[i] == 0 && nums[j] != 0){
                 int temp = nums[i];
                 nums[i] = nums[j];
@@ -12,12 +14,14 @@ public:
                 i++;
                 j++;
             }
-            else if(nums[i] != 0 && nums[j] == 0){
-                i++;
+            else if(nums[i]==0 && nums[j] == 0){
+                j++;
             }
             else{
+                i++;
                 j++;
             }
         }
+
     }
 };
