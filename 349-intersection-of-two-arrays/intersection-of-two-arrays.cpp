@@ -4,21 +4,17 @@ public:
         int n = nums1.size();
         int o = nums2.size();
 
-        set<int> st;
+        unordered_set<int> st;
         for(int i=0;i<n;i++){
             st.insert(nums1[i]);
         }
 
-        set<int> ans;
-        for(int x : nums2){
-            if(st.find(x)!= st.end()){
-                ans.insert(x);
+        vector<int> ans;
+        for(int x:st){
+            if(find(nums2.begin(),nums2.end(),x) != nums2.end()){
+                ans.push_back(x);
             }
         }
-        vector<int> a;
-        for(int x : ans){
-            a.push_back(x);
-        }
-        return a;
+        return ans;
     }
 };
